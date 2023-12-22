@@ -35,6 +35,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -62,7 +63,8 @@ public class CustomerDetails {
 	private String dateOfBirth;
 	
 	@Column(name = "occupation", nullable = false)
-	@NotEmpty(message = "Occupation is a required field")
+	@NotNull(message = "Occupation is a required field")
+	//@NotEmpty(message = "Occupation is a required field")
 	private Occupation occupation;
 	
 	@Column(name = "customerGroup", nullable = false)

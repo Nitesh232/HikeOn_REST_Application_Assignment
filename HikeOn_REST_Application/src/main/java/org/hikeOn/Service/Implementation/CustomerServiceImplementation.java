@@ -47,26 +47,34 @@ public class CustomerServiceImplementation implements CustomerService {
 
 	public CustomerDetails saveCustomer(CustomerDetails customer) throws CustomerExistException, UnderAgeException, FutureDateException {
 
+		
+		
 		if (customerRepository.existsByEmail(customer.getEmail())) {
 			throw new CustomerExistException("Customer already exist with email Id " + customer.getEmail());
 		}
 
 		if (customer.getEmail().endsWith("@hikeon.tech")) {
-			customer.setCustomer_group(CustomerGroup.HIKEON);
+			CustomerGroup cg = CustomerGroup.HIKEON;
+			customer.setCustomer_group(cg);
 		}
 
 		if (!customer.getEmail().endsWith("@hikeon.tech") && customer.getOccupation() == Occupation.DEVELOPER) {
-			customer.setCustomer_group(CustomerGroup.DEVELOPER);
+			CustomerGroup cg = CustomerGroup.DEVELOPER;
+			customer.setCustomer_group(cg);
 		} else if (!customer.getEmail().endsWith("@hikeon.tech") && customer.getOccupation() == Occupation.CHEF) {
-			customer.setCustomer_group(CustomerGroup.CHEF);
+			CustomerGroup cg = CustomerGroup.CHEF;
+			customer.setCustomer_group(cg);
 		} else {
-			customer.setCustomer_group(CustomerGroup.NA);
+			CustomerGroup cg = CustomerGroup.NA;
+			customer.setCustomer_group(cg);
 		}
 		
 		boolean verifiedAge = verifyAge(customer.getDateOfBirth());
 		
+		CustomerDetails savedCustomer = customerRepository.save(customer);
+		
 
-		return customer;
+		return savedCustomer;
 	}
 
 	static boolean verifyAge(String dob1) throws UnderAgeException, FutureDateException{

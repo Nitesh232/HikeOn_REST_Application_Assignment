@@ -56,7 +56,7 @@ public class CustomIdGenerator implements IdentifierGenerator{
 			
 			midString = String.valueOf(year);
 			
-			Query query = session.createQuery("SELECT COUNT(*) FROM User", CustomerDetails.class);
+			Query query = session.createQuery("SELECT COUNT(*) FROM CustomerDetails", CustomerDetails.class);
 			
 			Long count = ((Number) query.getSingleResult()).longValue();
 			
