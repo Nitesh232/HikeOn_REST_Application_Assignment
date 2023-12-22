@@ -47,7 +47,7 @@ public class CustomerServiceImplementation implements CustomerService {
 
 	public CustomerDetails saveCustomer(CustomerDetails customer) throws CustomerExistException, UnderAgeException, FutureDateException {
 
-		if (customerRepository.existByEmail(customer.getEmail())) {
+		if (customerRepository.existsByEmail(customer.getEmail())) {
 			throw new CustomerExistException("Customer already exist with email Id " + customer.getEmail());
 		}
 

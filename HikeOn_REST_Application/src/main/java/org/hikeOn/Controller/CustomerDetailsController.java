@@ -13,8 +13,11 @@ import org.hikeOn.Model.Response.HttpResponse;
 import org.hikeOn.Service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import lombok.RequiredArgsConstructor;
 
 /*
  * Copyright 2023 the original author or authors.
@@ -39,14 +42,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
+@RequiredArgsConstructor
 public class CustomerDetailsController {
 	
 	private final CustomerService customerService;
 	
-	public CustomerDetailsController(CustomerService service) {
-		this.customerService = service;
-	}
-	
+	@PostMapping("/customer")
 	public ResponseEntity<HttpResponse> registerCustomer(@RequestBody CustomerDetails customerModel) throws CustomerExistException, UnderAgeException, FutureDateException{
 		
 		CustomerDetails customer = customerService.saveCustomer(customerModel);
