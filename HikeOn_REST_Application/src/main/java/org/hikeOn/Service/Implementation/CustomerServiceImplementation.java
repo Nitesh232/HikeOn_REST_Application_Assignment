@@ -53,21 +53,20 @@ public class CustomerServiceImplementation implements CustomerService {
 			throw new CustomerExistException("Customer already exist with email Id " + customer.getEmail());
 		}
 
+		CustomerGroup cg = CustomerGroup.NA;
+		customer.setCustomer_group(cg.name());
+		
 		if (customer.getEmail().endsWith("@hikeon.tech")) {
-			CustomerGroup cg = CustomerGroup.HIKEON;
-			customer.setCustomer_group(cg);
+			cg = CustomerGroup.HIKEON;
+			customer.setCustomer_group(cg.name());
+		}else if (!customer.getEmail().endsWith("@hikeon.tech") && customer.getOccupation().equals(Occupation.DEVELOPER.name())) {
+			cg = CustomerGroup.DEVELOPER;
+			customer.setCustomer_group(cg.name());
+		} else if (!customer.getEmail().endsWith("@hikeon.tech") && customer.getOccupation().equals(Occupation.CHEF.name())) {
+			cg = CustomerGroup.CHEF;
+			customer.setCustomer_group(cg.name());
 		}
-
-		if (!customer.getEmail().endsWith("@hikeon.tech") && customer.getOccupation() == Occupation.DEVELOPER) {
-			CustomerGroup cg = CustomerGroup.DEVELOPER;
-			customer.setCustomer_group(cg);
-		} else if (!customer.getEmail().endsWith("@hikeon.tech") && customer.getOccupation() == Occupation.CHEF) {
-			CustomerGroup cg = CustomerGroup.CHEF;
-			customer.setCustomer_group(cg);
-		} else {
-			CustomerGroup cg = CustomerGroup.NA;
-			customer.setCustomer_group(cg);
-		}
+		
 		
 		boolean verifiedAge = verifyAge(customer.getDateOfBirth());
 		

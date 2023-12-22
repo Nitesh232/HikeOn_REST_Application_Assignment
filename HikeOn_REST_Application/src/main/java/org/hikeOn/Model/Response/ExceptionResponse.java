@@ -46,8 +46,6 @@ public class ExceptionResponse {
 	private String message;
 
 	private String devMessage;
-
-	private String requestMethod;
 	
 	private String path;
 

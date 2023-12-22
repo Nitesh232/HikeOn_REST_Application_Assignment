@@ -2,6 +2,14 @@ package org.hikeOn.Exception;
 
 
 
+import java.time.LocalDateTime;
+
+import org.apache.catalina.connector.Response;
+import org.hikeOn.Model.Response.ExceptionResponse;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 /*
  * Copyright 2023 the original author or authors.
  *
@@ -27,10 +35,76 @@ package org.hikeOn.Exception;
 
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class ExceptionHandlerClass {
 	
+	@ExceptionHandler(value = CustomerExistException.class)
+	public ResponseEntity<ExceptionResponse> customerExitst(CustomerExistException ae){
+		
+		return ResponseEntity.internalServerError().body(
+						ExceptionResponse.builder()
+						.timestamp(LocalDateTime.now().toString())
+						.status(HttpStatus.INTERNAL_SERVER_ERROR)
+						.statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+						.message(ae.getMessage())
+						.devMessage("Customer Already Exist, Please try another email ID...")
+						.build()				
+				);
+		
+		
+	}
+	
+	
+	@ExceptionHandler(value = FutureDateException.class)
+	public ResponseEntity<ExceptionResponse> futureDate(FutureDateException ae){
+		
+		return ResponseEntity.internalServerError().body(
+						ExceptionResponse.builder()
+						.timestamp(LocalDateTime.now().toString())
+						.status(HttpStatus.INTERNAL_SERVER_ERROR)
+						.statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+						.message(ae.getMessage())
+						.devMessage("Select appropriate year, which should be below current year...")
+						.build()				
+				);
+		
+		
+	}
+	
+	@ExceptionHandler(value = UnderAgeException.class)
+	public ResponseEntity<ExceptionResponse> futureDate(UnderAgeException ae){
+		
+		return ResponseEntity.internalServerError().body(
+						ExceptionResponse.builder()
+						.timestamp(LocalDateTime.now().toString())
+						.status(HttpStatus.INTERNAL_SERVER_ERROR)
+						.statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+						.message(ae.getMessage())
+						.devMessage("Age is below 18.......")
+						.build()				
+				);
+		
+		
+	}
+	
+	
+	@ExceptionHandler(value = Exception.class)
+	public ResponseEntity<ExceptionResponse> futureDate(Exception ae){
+		
+		return ResponseEntity.internalServerError().body(
+						ExceptionResponse.builder()
+						.timestamp(LocalDateTime.now().toString())
+						.status(HttpStatus.INTERNAL_SERVER_ERROR)
+						.statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+						.message(ae.getMessage())
+						.devMessage(ae.getLocalizedMessage())
+						.build()				
+				);
+		
+		
+	}
 	
 
 }
