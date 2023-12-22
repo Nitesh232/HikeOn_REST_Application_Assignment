@@ -1,6 +1,11 @@
-package org.hikeOn.Model.Response;
+package org.hikeOn.Service.Implementation;
 
+import org.hikeOn.Model.CustomerDetails;
+import org.hikeOn.Model.Request.CustomerRequestModel;
+import org.hikeOn.Service.CustomerService;
+import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
 
 /*
  * Copyright 2023 the original author or authors.
@@ -25,31 +30,15 @@ package org.hikeOn.Model.Response;
  */
 
 
-import org.springframework.http.HttpStatus;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-
-import lombok.Data;
-import lombok.experimental.SuperBuilder;
-
-@Data
-@SuperBuilder
-@JsonInclude(JsonInclude.Include.NON_DEFAULT)
-public class ExceptionResponse {
+@Service
+@RequiredArgsConstructor
+public class CustomerServiceImplementation implements CustomerService{
 	
-	private String timestamp;
-
-	private int statusCode;
-
-	private HttpStatus status;
-
-	private String message;
-
-	private String devMessage;
-
-	private String requestMethod;
+	public CustomerDetails saveCustomer(CustomerRequestModel customer) {
 	
-	private String path;
-
 	
+	
+		return null;
+	}
+
 }

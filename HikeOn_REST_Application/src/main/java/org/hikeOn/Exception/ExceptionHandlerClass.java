@@ -1,4 +1,4 @@
-package org.hikeOn.Model.Response;
+package org.hikeOn.Exception;
 
 
 
@@ -25,31 +25,12 @@ package org.hikeOn.Model.Response;
  */
 
 
-import org.springframework.http.HttpStatus;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 
-import lombok.Data;
-import lombok.experimental.SuperBuilder;
-
-@Data
-@SuperBuilder
-@JsonInclude(JsonInclude.Include.NON_DEFAULT)
-public class ExceptionResponse {
+@ControllerAdvice
+public class ExceptionHandlerClass {
 	
-	private String timestamp;
-
-	private int statusCode;
-
-	private HttpStatus status;
-
-	private String message;
-
-	private String devMessage;
-
-	private String requestMethod;
 	
-	private String path;
 
-	
 }
