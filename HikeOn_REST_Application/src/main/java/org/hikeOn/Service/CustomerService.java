@@ -1,7 +1,10 @@
 package org.hikeOn.Service;
 
+import org.hikeOn.Exception.CustomerExistException;
+import org.hikeOn.Exception.FutureDateException;
+import org.hikeOn.Exception.UnderAgeException;
 import org.hikeOn.Model.CustomerDetails;
-import org.hikeOn.Model.Request.CustomerRequestModel;
+
 
 /*
  * Copyright 2023 the original author or authors.
@@ -29,6 +32,7 @@ import org.hikeOn.Model.Request.CustomerRequestModel;
 
 public interface CustomerService {
 	
-	CustomerDetails saveCustomer(CustomerRequestModel customer);
+	CustomerDetails saveCustomer(CustomerDetails customer) throws CustomerExistException, UnderAgeException, FutureDateException;
+	
 
 }

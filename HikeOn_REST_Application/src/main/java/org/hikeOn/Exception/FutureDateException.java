@@ -1,5 +1,4 @@
-package org.hikeOn.Model.Request;
-
+package org.hikeOn.Exception;
 
 
 /*
@@ -25,31 +24,18 @@ package org.hikeOn.Model.Request;
  */
 
 
-import java.util.Date;
+public class FutureDateException extends Exception{
 
-import org.hikeOn.Model.Occupation;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+	public FutureDateException(String message) {
+		super(message);
+	}
+	
+	
+	
 
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class CustomerRequestModel {
-	
-	
-	private String name;
-	
-	
-	private String email;
-	
-	
-	private Date dateOfBirth;
-	
-	
-	private Occupation occupation;
-	
-	
 }

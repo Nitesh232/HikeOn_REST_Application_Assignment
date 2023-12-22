@@ -34,6 +34,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
 @Data
@@ -49,15 +50,19 @@ public class CustomerDetails {
 	private String id;
 	
 	@Column(name = "name", nullable = false)
+	@NotEmpty(message = "Name is a required field")
 	private String name;
 	
 	@Column(name = "email", nullable = false)
+	@NotEmpty(message = "Email is a required field")
 	private String email;
 	
 	@Column(name = "dob", nullable = false)
-	private Date dateOfBirth;
+	@NotEmpty(message = "DateOfBirth is a required field")
+	private String dateOfBirth;
 	
 	@Column(name = "occupation", nullable = false)
+	@NotEmpty(message = "Occupation is a required field")
 	private Occupation occupation;
 	
 	@Column(name = "customerGroup", nullable = false)

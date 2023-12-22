@@ -1,5 +1,4 @@
-package org.hikeOn.Repository;
-
+package org.hikeOn.Exception;
 
 
 /*
@@ -25,18 +24,17 @@ package org.hikeOn.Repository;
  */
 
 
-import java.io.Serializable;
+public class UnderAgeException extends Exception{
 
-import org.hikeOn.Model.CustomerDetails;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-
-@Repository
-public interface CustomerDetailsRepository extends JpaRepository<CustomerDetails, Serializable>{
+	public UnderAgeException(String message) {
+		super(message);
+	}
 	
-	CustomerDetails findByEmail(String email);
 	
-	boolean existByEmail(String email);
 
 }
